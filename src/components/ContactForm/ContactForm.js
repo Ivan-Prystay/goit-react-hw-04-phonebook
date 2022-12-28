@@ -14,28 +14,25 @@ export function ContactForm(props) {
   const [number, setNumber] = useState('');
   const nanoid = customAlphabet('1234567890', 2);
 
-  console.log('name: ', name);
-  console.log('number: ', number);
+  // const handleChange = e => {
+  //   const { name, value } = e.currentTarget;
 
-  const handleChange = event => {
-    const { name, value } = event.currentTarget;
+  //   switch (name) {
+  //     case 'name':
+  //       setName(value);
+  //       break;
 
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
+  //     case 'number':
+  //       setNumber(value);
+  //       break;
 
-      case 'number':
-        setNumber(value);
-        break;
+  //     default:
+  //       return;
+  //   }
+  // };
 
-      default:
-        return;
-    }
-  };
-
-  const handleSubmit = event => {
-    event.preventDefault();
+  const handleSubmit = e => {
+    e.preventDefault();
     props.onSubmit({ name, number });
     setName('');
     setNumber('');
@@ -54,7 +51,10 @@ export function ContactForm(props) {
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
-        onChange={handleChange}
+        onChange={
+          //handleChange
+          e => setName(e.currentTarget.value)
+        }
         value={name}
         id={NameInput.id}
       />
@@ -66,7 +66,10 @@ export function ContactForm(props) {
         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
-        onChange={handleChange}
+        onChange={
+          //handleChange
+          e => setNumber(e.currentTarget.value)
+        }
         value={number}
         id={TelInput.id}
       />
