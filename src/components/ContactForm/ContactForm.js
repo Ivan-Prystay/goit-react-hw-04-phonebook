@@ -14,23 +14,6 @@ export function ContactForm(props) {
   const [number, setNumber] = useState('');
   const nanoid = customAlphabet('1234567890', 2);
 
-  // const handleChange = e => {
-  //   const { name, value } = e.currentTarget;
-
-  //   switch (name) {
-  //     case 'name':
-  //       setName(value);
-  //       break;
-
-  //     case 'number':
-  //       setNumber(value);
-  //       break;
-
-  //     default:
-  //       return;
-  //   }
-  // };
-
   const handleSubmit = e => {
     e.preventDefault();
     props.onSubmit({ name, number });
